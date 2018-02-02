@@ -256,7 +256,7 @@ export LESS="-iMSx4 -FX"
 export HISTCONTROL='ignoreboth:erasedupes'
 export HISTFILESIZE=10000                    # number of command lines to save in history
 export HISTSIZE=1000                         # commands to save in ram
-export HISTTIMEFORMAT='%F %T '               # add date and timestamp
+export HISTTIMEFORMAT='%F %T #  '            # add date and timestamp
 shopt -s histappend                          # append to history file
 export PROMPT_COMMAND='history -a'           # save history after every command
 # set screen title
