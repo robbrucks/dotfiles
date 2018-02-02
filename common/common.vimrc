@@ -33,7 +33,7 @@ set langmenu=en
 set ruler
 
 " Height of the command bar
-set cmdheight=2
+"set cmdheight=2
 
 " A buffer becomes hidden when it is abandoned
 set hid
@@ -79,7 +79,7 @@ endif
 
 
 " Add a bit extra margin to the left
-set foldcolumn=1
+"set foldcolumn=1
 
 " Disable vi compatibility (adds lots of nice vim features)
 set nocp
@@ -184,4 +184,5 @@ function! HasPaste()
     endif
     return ''
 endfunction
+
 
