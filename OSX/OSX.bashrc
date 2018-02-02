@@ -1,53 +1,87 @@
-#  ---------------------------------------------------------------------------
-#
-#  Description:  This file holds all my BASH configurations and aliases
-#
-#  Sections:
-#  1.  Environment Configuration
-#  2.  Make Terminal Better (remapping defaults and adding functionality)
-#  3.  File and Folder Management
-#  4.  Searching
-#  5.  Process Management
-#  6.  Networking
-#  7.  System Operations & Information
-#  8.  Web Development
-#  9.  Reminders & Notes
-#
-#  ---------------------------------------------------------------------------
+# Import custom aliases, if they exist
 
-     if [ -f $HOME/.bash_aliases ]; then
-         . $HOME/.bash_aliases
-     fi
+if [ -f $HOME/.bash_aliases ]; then
+  source $HOME/.bash_aliases
+fi
 
-#   -------------------------------
-#   1. ENVIRONMENT CONFIGURATION
-#   -------------------------------
-
-#   Change Prompt
+#   Set Prompt
 #   Generated from: http://ezprompt.net/
 #   ------------------------------------------------------------
-#    export PS1="\[\e[31m\]\u\[\e[m\]@\[\e[32m\]\h\[\e[m\][\[\e[34m\]\w\[\e[m\]] \[\e[33m\]\\$\[\e[m\] "
-    export PS1="\[\e[31m\]\u\[\e[m\]@\[\e[32m\]\h\[\e[m\]:\w \[\e[36m\]\\$\[\e[m\] "
-    export PS2=" \[\e[36m\]=\[\e[m\]\[\e[36m\]=\[\e[m\]\[\e[36m\]>\[\e[m\]  "
+
+# get current branch in git repo
+function parse_git_branch() {
+    rc=$?   # save rc for use in ps1
+	BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
+	if [ ! "${BRANCH}" == "" ]
+	then
+		STAT=`parse_git_dirty`
+        REPODIR=`git rev-parse --show-toplevel`
+        REPONAME=`basename ${REPODIR}`
+		echo " [${REPONAME}:${BRANCH}${STAT}]"
+        return $rc
+	else
+		echo ""
+        return $rc
+	fi
+}
+
+# get current status of git repo
+function parse_git_dirty {
+	status=`git status 2>&1 | tee`
+	dirty=`echo -n "${status}" 2> /dev/null | grep "modified:" &> /dev/null; echo "$?"`
+	untracked=`echo -n "${status}" 2> /dev/null | grep "Untracked files" &> /dev/null; echo "$?"`
+	ahead=`echo -n "${status}" 2> /dev/null | grep "Your branch is ahead of" &> /dev/null; echo "$?"`
+	newfile=`echo -n "${status}" 2> /dev/null | grep "new file:" &> /dev/null; echo "$?"`
+	renamed=`echo -n "${status}" 2> /dev/null | grep "renamed:" &> /dev/null; echo "$?"`
+	deleted=`echo -n "${status}" 2> /dev/null | grep "deleted:" &> /dev/null; echo "$?"`
+	bits=''
+	if [ "${renamed}" == "0" ]; then
+		bits=">${bits}"
+	fi
+	if [ "${ahead}" == "0" ]; then
+		bits="*${bits}"
+	fi
+	if [ "${newfile}" == "0" ]; then
+		bits="+${bits}"
+	fi
+	if [ "${untracked}" == "0" ]; then
+		bits="?${bits}"
+	fi
+	if [ "${deleted}" == "0" ]; then
+		bits="x${bits}"
+	fi
+	if [ "${dirty}" == "0" ]; then
+		bits="!${bits}"
+	fi
+	if [ ! "${bits}" == "" ]; then
+		echo "${bits}"
+	else
+		echo ""
+	fi
+}
+
+export PS1="[\[$(tput sgr0)\]\[\033[38;5;4m\]\u\[$(tput sgr0)\]@\[\033[38;5;1m\]\h\[$(tput sgr0)\] \[\033[38;5;2m\]\W\[$(tput sgr0)\]]\[\033[38;5;3m\]\`parse_git_branch\`\[\033[38;5;208m\] (\$?)\[\033[38;5;5m\]\\$\[$(tput sgr0)\] "
+export PS2=" \[\033[38;5;3m\]==>\[$(tput sgr0)\] "
+
 
 #   Set Paths
 #   ------------------------------------------------------------
-    export PATH="$PATH:/usr/local/sbin:/usr/local/bin"
+export PATH="$PATH:/usr/local/sbin:/usr/local/bin"
 
-    if [[ -d $HOME/.local/bin ]]; then
-      export PATH="$PATH:$HOME/.local/bin"
-    fi
-    if [[ -d $HOME/.bin ]]; then
-      export PATH="$PATH:$HOME/.bin"
-    fi
-    if [[ -d $HOME/bin ]]; then
-      export PATH="$PATH:$HOME/bin"
-    fi
+if [[ -d $HOME/.local/bin ]]; then
+  export PATH="$PATH:$HOME/.local/bin"
+fi
+if [[ -d $HOME/.bin ]]; then
+  export PATH="$PATH:$HOME/.bin"
+fi
+if [[ -d $HOME/bin ]]; then
+  export PATH="$PATH:$HOME/bin"
+fi
 
 #   Set default blocksize for ls, df, du
 #   from this: http://hints.macworld.com/comment.php?mode=view&cid=24491
 #   ------------------------------------------------------------
-    export BLOCKSIZE=1k
+export BLOCKSIZE=1k
 
 #   Add color to terminal
 #   (this is all commented out as I use Mac Terminal Profiles)
@@ -56,11 +90,6 @@
 #   export CLICOLOR=1
 #   export LSCOLORS=ExFxBxDxCxegedabagacad   # for light background
 #   export LSCOLORS=GxFxCxDxBxegedabagaced   # for dark background
-
-
-#   -----------------------------
-#   2. MAKE TERMINAL BETTER
-#   -----------------------------
 
 #alias cp='cp -iv'                           # Preferred 'cp' implementation
 alias mv='mv -iv'                           # Preferred 'mv' implementation
