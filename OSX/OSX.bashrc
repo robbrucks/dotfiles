@@ -138,7 +138,7 @@ export PROMPT_COMMAND='history -a'           # save history after every command
 #   ------------------------------------------------------------
 case "$TERM" in
 xterm*|rxvt*|linux*)
-    export PROMPT_COMMAND='history -a;echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"'
+    export PROMPT_COMMAND='history -a;echo -ne "\033]0;${HOSTNAME%%.*}: ${PWD/$HOME/~}\007"'
     ;;
 *)
     ;;
