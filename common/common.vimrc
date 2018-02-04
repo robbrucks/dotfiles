@@ -168,7 +168,7 @@ vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 set laststatus=2
 
 " Format the status line
-set statusline=File:\ %F%m%r%h\ \ [%{&ff}]\ %{HasPaste()}\ %=CWD:\ [%r%{getcwd()}%h]\ \ %l,%c\ of\ %L\ lines\ (%p%%)
+set statusline=CWD:\ [%r%{getcwd()}%h]\ %=[%{&ff}]\ %{HasPaste()}\ File:\ %t%m%r%h\ \ %l,%c\ of\ %L\ lines\ (%p%%)
 
 " from my personal:
 " set statusline=%t%r\ %y\ \ format:\ %{&ff}%=[%c,%l]\ of\ %L\ lines\ %p%%

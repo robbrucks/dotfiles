@@ -11,12 +11,15 @@ alias .6='cd ../../../../../../'            # Go back 6 directory levels
 alias c='clear'                             # c:            Clear terminal display
 alias cd..='cd ../'                         # Go back 1 directory level (for fast typers)
 alias cic='set completion-ignore-case On'   # cic:          Make tab-completion case-insensitive
-#alias cp='cp -iv'                          # Preferred 'cp' implementation
+#alias cp='cp -iv'                           # Preferred 'cp' implementation
 alias dos2unix="perl -pe 's/\r\n|\n|\r/\n/g'"    # convert a file from dos format to unix format
 alias DT='tee ~/Desktop/terminalOut.txt'    # DT:           Pipe content to file on MacOS Desktop
 #alias edit='subl'                          # edit:         Opens any file in sublime editor
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
 alias finder='open -a Finder ./'            # f:            Opens current directory in MacOS Finder
 alias fix_stty='stty sane'                  # fix_stty:     Restore terminal settings when screwed up
+alias grep='grep --color=auto'
 alias l.='ls -AFGlhp'                       # Show hidden files
 alias ll='ls -FGlhp'                        # Full directory listing
 #                                             lock:  Lock screen immediately
@@ -24,7 +27,7 @@ alias lock='/System/Library/CoreServices/ScreenSaverEngine.app/Contents/MacOS/Sc
 #                                             lr:  Full Recursive Directory Listing
 alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'' | less'
 alias ls='ls -FGhp'                         # Preferred 'ls' implementation
-#alias mkdir='mkdir -pv'                    # Preferred 'mkdir' implementation
+#alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
 alias mv='mv -iv'                           # Preferred 'mv' implementation
 alias myip='dig +short myip.opendns.com @resolver1.opendns.com.'    # myip:   Public facing IP Address
 alias numFiles='echo $(ls -1 | wc -l)'      # numFiles:     Count of non-hidden files in current dir
