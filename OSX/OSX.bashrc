@@ -81,9 +81,6 @@ function parse_git_dirty {
 	fi
 }
 
-#export PS1="[\[$(tput sgr0)\]\[\033[38;5;4m\]\u\[$(tput sgr0)\]@\[\033[38;5;1m\]\h\[$(tput sgr0)\] \[\033[38;5;2m\]\W\[$(tput sgr0)\]]\[\033[38;5;3m\]\`parse_git_branch\`\[\033[38;5;208m\] (\$?)\[\033[38;5;5m\]\\$\[$(tput sgr0)\] "
-export PS1="\[\033[38;5;12m\]\[\033[48;5;0m\]\h\[$(tput sgr0)\]\[\033[38;5;15m\]:\[$(tput sgr0)\]\[\033[38;5;226m\]\w\[$(tput sgr0)\]\[\033[38;5;10m\]\[\033[48;5;0m\]\`parse_git_branch\`\[$(tput sgr0)\]\[\033[38;5;202m\] (\$?)\[$(tput sgr0)\] \[\033[38;5;13m\]\\$\[$(tput sgr0)\] "
-export PS2=" \[\033[38;5;3m\]==>\[$(tput sgr0)\] "
 
 
 #   ------------------------------------------------------------
@@ -126,7 +123,6 @@ export HISTSIZE=1000                         # commands to save in ram
 export HISTTIMEFORMAT='%F %T #  '            # add date and timestamp
 export LESS='-FiMRSXx4'                      # make less less annoying
 export PAGER=/usr/bin/less                   # set default pager to less
-export PROMPT_COMMAND='history -a'           # save history after every command
 
 #   ------------------------------------------------------------
 #   Enable tab completion for ssh, scp, and sftp hostnames
@@ -140,8 +136,16 @@ export PROMPT_COMMAND='history -a'           # save history after every command
 case "$TERM" in
 xterm*|rxvt*|linux*)
     export PROMPT_COMMAND='history -a;echo -ne "\033]0;${HOSTNAME%%.*}: ${PWD/$HOME/~}\007"'
+    export PS1="\[\033[38;5;12m\]\[\033[48;5;0m\]\h\[$(tput sgr0)\]\[\033[38;5;15m\]:\[$(tput sgr0)\]\[\033[38;5;226m\]\w\[$(tput sgr0)\]\[\033[38;5;10m\]\[\033[48;5;0m\]\`parse_git_branch\`\[$(tput sgr0)\]\[\033[38;5;202m\] (\$?)\[$(tput sgr0)\] \[\033[38;5;13m\]\\$\[$(tput sgr0)\] "
+    export PS2=" \[\033[38;5;3m\]==>\[$(tput sgr0)\] "
+    ;;
+screen*)
+    export PROMPT_COMMAND='history -a'
+    export PS1="[]\[\033[38;5;12m\]\[\033[48;5;0m\]\h\[$(tput sgr0)\]\[\033[38;5;15m\]:\[$(tput sgr0)\]\[\033[38;5;226m\]\w\[$(tput sgr0)\]\[\033[38;5;10m\]\[\033[48;5;0m\]\`parse_git_branch\`\[$(tput sgr0)\]\[\033[38;5;202m\] (\$?)\[$(tput sgr0)\] \[\033[38;5;13m\]\\$\[$(tput sgr0)\] "
+    export PS2=" \[\033[38;5;3m\]==>\[$(tput sgr0)\] "
     ;;
 *)
+    export PROMPT_COMMAND='history -a'
     ;;
 esac
 
