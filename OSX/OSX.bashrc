@@ -123,7 +123,7 @@ export HISTCONTROL='ignoreboth:erasedupes'   # remove dupes and "spaced" command
 export HISTFILESIZE=10000                    # number of command lines to save in history
 export HISTSIZE=1000                         # commands to save in ram
 export HISTTIMEFORMAT='%F %T #  '            # add date and timestamp
-export LESS='-FiMSx4'                        # make less less annoying
+export LESS='-FiMRSXx4'                      # make less less annoying
 export PAGER=/usr/bin/less                   # set default pager to less
 export PROMPT_COMMAND='history -a'           # save history after every command
 
