@@ -17,7 +17,8 @@ alias DT='tee ~/Desktop/terminalOut.txt'    # DT:           Pipe content to file
 #alias edit='subl'                          # edit:         Opens any file in sublime editor
 alias finder='open -a Finder ./'            # f:            Opens current directory in MacOS Finder
 alias fix_stty='stty sane'                  # fix_stty:     Restore terminal settings when screwed up
-alias ll='ls -FGlhp'                        # Preferred 'ls' implementation
+alias l.='ls -AFGlhp'                       # Show hidden files
+alias ll='ls -FGlhp'                        # Full directory listing
 #                                             lock:  Lock screen immediately
 alias lock='/System/Library/CoreServices/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine'
 #                                             lr:  Full Recursive Directory Listing
