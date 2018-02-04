@@ -1,0 +1,17 @@
+# This is Git's per-user configuration file.
+
+[user]
+  name = Rob Brucks
+  email = rob.brucks@gmail.com
+
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+  interactive = auto
+  ui = true
+  pager = true
+
+[push]
+  default = simple
+
