@@ -19,7 +19,8 @@ alias fgrep='fgrep --color=auto'
 alias fix_stty='stty sane'                  # fix_stty:     Restore terminal settings when screwed up
 alias grep='grep --color=auto'
 alias l.='ls -AFlhp --color=auto'           # List hidden files
-alias ll='ls -Flhp --color=auto'            # Preferred 'ls' implementation
+rlias l='ls -Flhp --color=auto'             # Preferred 'ls' implementation
+rlias ll='ls -Flhp --color=auto'            # Preferred 'ls' implementation
 #                                             lr:  Full Recursive Directory Listing
 alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'' | less'
 alias ls='ls -Fhp --color=auto'                         # Preferred 'ls' implementation

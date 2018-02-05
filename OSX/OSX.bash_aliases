@@ -21,6 +21,7 @@ alias finder='open -a Finder ./'            # f:            Opens current direct
 alias fix_stty='stty sane'                  # fix_stty:     Restore terminal settings when screwed up
 alias grep='grep --color=auto'
 alias l.='ls -AFGlhp'                       # Show hidden files
+alias l='ls -FGlhp'                         # Full directory listing
 alias ll='ls -FGlhp'                        # Full directory listing
 #                                             lock:  Lock screen immediately
 alias lock='/System/Library/CoreServices/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine'
