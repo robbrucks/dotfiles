@@ -153,16 +153,18 @@ esac
 #   ------------------------------------------------------------
 #   SSH Agent
 #   ------------------------------------------------------------
-ssh-add -l &>/dev/null
-if [ "$?" == 2 ]; then
-  test -r ~/.ssh-agent && \
-    eval "$(<~/.ssh-agent -t 8h)" >/dev/null
-
+if [[ $(logname) == ${USER} ]]; then
   ssh-add -l &>/dev/null
   if [ "$?" == 2 ]; then
-    (umask 066; ssh-agent > ~/.ssh-agent)
-    eval "$(<~/.ssh-agent)" >/dev/null
-    ssh-add
+    test -r ~/.ssh-agent && \
+      eval "$(<~/.ssh-agent)" >/dev/null
+
+    ssh-add -l &>/dev/null
+    if [ "$?" == 2 ]; then
+      (umask 066; ssh-agent -t 8h > ~/.ssh-agent)
+      eval "$(<~/.ssh-agent)" >/dev/null
+      ssh-add
+    fi
   fi
 fi
 
