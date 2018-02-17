@@ -4,6 +4,8 @@
 "
 " Modified by Rob Brucks
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set wildmenu            " visual autocomplete for command menu
+set showmode            " add insert mode to command line
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Sets how many lines of history VIM has to remember
