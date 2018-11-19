@@ -2,7 +2,7 @@
 " Original from here:
 "           https://github.com/amix/vimrc
 "
-" Modified by Rob Brucks
+" Modified by Rob Brucks  
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set wildmenu            " visual autocomplete for command menu
 set showmode            " add insert mode to command line
