@@ -43,7 +43,7 @@ alias which='type -all'                     # which:        Find executables
 #   ------------------------------------------------------------
 #   Function-based Aliases
 #   ------------------------------------------------------------
-cd () { builtin cd "$@"; ll; }               # Always list directory contents upon 'cd'
+# cd () { builtin cd "$@"; ls -l; }               # Always list directory contents upon 'cd'
 findPid () { lsof -t -c "$@" ; }
 ql () { qlmanage -p "$*" >& /dev/null; }     # ql:           Opens any file in MacOS Quicklook Preview
 trash () { command mv "$@" ~/.Trash ; }      # trash:        Moves a file to the MacOS trash

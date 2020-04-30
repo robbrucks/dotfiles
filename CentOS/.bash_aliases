@@ -40,7 +40,7 @@ alias vi='vim'
 #   Function-based Aliases
 #   ------------------------------------------------------------
 
-cd () { builtin cd "$@"; ll; }               # Always list directory contents upon 'cd'
+# cd () { builtin cd "$@"; ls -l; }               # Always list directory contents upon 'cd'
 
 
 # extract:  Extract most know archives with one command
